@@ -2,7 +2,7 @@ package com.fragnostic.dao
 
 import com.fragnostic.dao.impl.MySql8DataSource
 
-object CakeDao {
+object CakeDaoMySql {
 
   lazy val mysql8DataSourcePiece = new MySql8DataSource {}
 
