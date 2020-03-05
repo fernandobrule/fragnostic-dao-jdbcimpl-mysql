@@ -11,7 +11,7 @@ class MySql8DataSourceTest extends FunSpec with Matchers {
     it("Can Get MySql8 DataSource") {
       // https://mariadb.com/kb/en/library/about-mariadb-connector-j/
       // https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client/2.3.0
-      CakeDao.mysql8DataSource.getDataSource fold (
+      CakeDaoMySql.mysql8DataSource.getDataSource fold (
         error => throw new IllegalStateException(error),
         dataSource => {
           val connection: Connection = dataSource.getConnection
