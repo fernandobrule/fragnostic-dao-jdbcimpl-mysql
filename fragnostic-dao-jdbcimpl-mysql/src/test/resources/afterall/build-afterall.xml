@@ -1,0 +1,56 @@
+
+<project name="fragnostic dao jdbcimpl mysql" default="usage" basedir=".">
+
+  <description>fragnostic dao jdbcimpl mysql</description>
+
+  <property environment="env" />
+  <property file="build-afterall.properties"/>
+
+  <target name="usage">
+    <echo>===============================</echo>
+    <echo>   Availables targets are:</echo>
+    <echo>-------------------------------</echo>
+    <echo>$ cdb --> create database '${db.name}'</echo>
+    <echo>$ cusr --> create user</echo>
+    <echo>$ cct --> cat create table</echo>
+    <echo>$ cpt --> cat populate table</echo>
+    <echo>$ ct ---> create table</echo>
+    <echo>$ pt ---> populate table</echo>
+    <echo>$ all ----> all targets</echo>
+    <echo>===============================</echo>
+  </target>
+
+
+   <!-- 
+   - DROP ALL
+   -->
+  <target name="dropall">
+    <tstamp>
+      <format property="archive.name" pattern="'logs/frg-create-usr.log'" />
+    </tstamp>
+    <sql driver="${driver.class}" 
+         url="${db.root.url}" 
+         userid="${db.root.usr}" 
+         password="${db.root.psw}" 
+         src="scripts/init-db-user.sql" 
+         print="yes" 
+         output="${archive.name}">
+      <classpath>
+        <pathelement location="${driver.location}"/>
+      </classpath>
+    </sql>
+    <echo>-------------------------------------</echo>
+    <echo>SUCCESS: create usr done</echo>
+    <echo>-------------------------------------</echo>
+  </target>
+
+
+   <!-- 
+   - DO ALL
+   - , cdb, cct, ct, cpt, pt
+   -->
+  <target name="afterall" depends="">
+    <echo>After All Done</echo>
+  </target>
+
+</project>

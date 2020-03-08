@@ -1,0 +1,109 @@
+
+<project name="fragnostic dao jdbcimpl mysql" default="usage" basedir=".">
+
+  <description>fragnostic dao jdbcimpl mysql</description>
+
+  <property environment="env" />
+  <property file="build-beforeall.properties"/>
+
+  <target name="usage">
+    <echo>===============================</echo>
+    <echo>   Availables targets are:</echo>
+    <echo>-------------------------------</echo>
+    <echo>$ cdb --> create database '${db.name}'</echo>
+    <echo>$ cusr --> create user</echo>
+    <echo>$ cct --> cat create table</echo>
+    <echo>$ cpt --> cat populate table</echo>
+    <echo>$ ct ---> create table</echo>
+    <echo>$ pt ---> populate table</echo>
+    <echo>$ all ----> all targets</echo>
+    <echo>===============================</echo>
+  </target>
+
+
+   <!-- 
+   - CREATE USER
+   -->
+  <target name="cusr">
+    <tstamp>
+      <format property="archive.name" pattern="'${lod.dir}/frg-create-usr.log'" />
+    </tstamp>
+    <sql driver="${driver.class}" 
+         url="${db.root.url}" 
+         userid="${db.root.usr}" 
+         password="${db.root.psw}" 
+         src="scripts/init-db-user.sql" 
+         print="yes" 
+         output="${archive.name}">
+      <classpath>
+        <pathelement location="${driver.location}"/>
+      </classpath>
+    </sql>
+    <echo>-------------------------------------</echo>
+    <echo>SUCCESS: create usr done</echo>
+    <echo>-------------------------------------</echo>
+  </target>
+
+
+   <!-- 
+   - CREATE DB
+   -->
+  <target name="cdb">
+    <tstamp>
+      <format property="archive.name" pattern="'${lod.dir}/frg-create-db.log'" />
+    </tstamp>
+    <echo>- db.fp.url : ${db.fp.url}</echo>
+    <echo>- db.frg.usr : ${db.frg.usr}</echo>
+    <echo>- db.frg.psw : ${db.frg.psw}</echo>
+    <sql driver="${driver.class}" 
+         url="${db.frg.url}" 
+         userid="${db.frg.usr}" 
+         password="${db.frg.psw}" 
+         src="scripts/init-db.sql" 
+         print="yes" 
+         output="${archive.name}">
+      <classpath>
+        <pathelement location="${driver.location}"/>
+      </classpath>
+    </sql>
+    <echo>-------------------------------------</echo>
+    <echo>SUCCESS: create db done</echo>
+    <echo>-------------------------------------</echo>
+  </target>
+
+
+   <!-- 
+   - CREATE TEST TABLE
+   -->
+  <target name="ctt">
+    <tstamp>
+      <format property="archive.name" pattern="'${lod.dir}/frg-create-test-table.log'" />
+    </tstamp>
+    <echo>- db.fp.url : ${db.fp.url}</echo>
+    <echo>- db.frg.usr : ${db.frg.usr}</echo>
+    <echo>- db.frg.psw : ${db.frg.psw}</echo>
+    <sql driver="${driver.class}" 
+         url="${db.frg.url}" 
+         userid="${db.frg.usr}" 
+         password="${db.frg.psw}" 
+         src="scripts/init-db.sql" 
+         print="yes" 
+         output="${archive.name}">
+      <classpath>
+        <pathelement location="${driver.location}"/>
+      </classpath>
+    </sql>
+    <echo>-------------------------------------</echo>
+    <echo>SUCCESS: create db done</echo>
+    <echo>-------------------------------------</echo>
+  </target>
+
+
+   <!-- 
+   - BEFORE ALL
+   -->
+  <target name="beforeall" depends="cusr, cdb">
+    <echo>Before All Done</echo>
+  </target>
+
+</project>
