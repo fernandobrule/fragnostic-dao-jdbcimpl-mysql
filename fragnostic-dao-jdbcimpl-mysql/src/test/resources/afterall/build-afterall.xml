@@ -24,15 +24,15 @@
    <!-- 
    - DROP ALL
    -->
-  <target name="dropall">
+  <target name="drop-all">
     <tstamp>
-      <format property="archive.name" pattern="'logs/frg-create-usr.log'" />
+      <format property="archive.name" pattern="'${lod.dir}/frg-drop-all.log'" />
     </tstamp>
     <sql driver="${driver.class}" 
          url="${db.root.url}" 
          userid="${db.root.usr}" 
          password="${db.root.psw}" 
-         src="scripts/init-db-user.sql" 
+         src="scripts/drop-all.sql" 
          print="yes" 
          output="${archive.name}">
       <classpath>
@@ -49,7 +49,7 @@
    - DO ALL
    - , cdb, cct, ct, cpt, pt
    -->
-  <target name="afterall" depends="">
+  <target name="afterall" depends="drop-all">
     <echo>After All Done</echo>
   </target>
 

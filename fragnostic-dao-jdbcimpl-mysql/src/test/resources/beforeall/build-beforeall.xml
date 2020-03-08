@@ -53,7 +53,7 @@
    -->
   <target name="create-user">
     <tstamp>
-      <format property="archive.name" pattern="'${lod.dir}/frg-create-usr.log'" />
+      <format property="archive.name" pattern="'${lod.dir}/frg-create-user.log'" />
     </tstamp>
     <sql driver="${driver.class}" 
          url="${db.root.url}" 
