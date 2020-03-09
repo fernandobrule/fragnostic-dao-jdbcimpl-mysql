@@ -76,7 +76,7 @@ class FindByIdAgnosticTest extends DaoLifeCycleSupport with FindByIdAgnostic {
 
     }
 
-    ignore("Cannot Find By Id") {
+    it("Cannot Find By Id") {
 
       val id: Long = 2000
 
@@ -87,7 +87,7 @@ class FindByIdAgnosticTest extends DaoLifeCycleSupport with FindByIdAgnostic {
       opt should be(None)
     }
 
-    ignore("Can Handle Error On Query") {
+    it("Can Handle Error On Query") {
 
       val id: Long = 2
 
@@ -100,7 +100,7 @@ class FindByIdAgnosticTest extends DaoLifeCycleSupport with FindByIdAgnostic {
 
     }
 
-    ignore("Can Handle Error On PS Fill Out") {
+    it("Can Handle Error On PS Fill Out") {
 
       val id: Long = 2
 
@@ -113,7 +113,7 @@ class FindByIdAgnosticTest extends DaoLifeCycleSupport with FindByIdAgnostic {
 
     }
 
-    ignore("Can Handle Error On Empty PS Fill Out") {
+    it("Can Handle Error On Empty PS Fill Out") {
 
       val id: Long = 2
 
