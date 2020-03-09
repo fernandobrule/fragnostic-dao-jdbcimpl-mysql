@@ -29,19 +29,12 @@
    - DROP ALL
    -->
   <target name="drop-all">
-    <tstamp>
-      <format property="archive.name" pattern="'${lod.dir}/frg-drop-all.log'" />
-    </tstamp>
-    <echo>- db.root.url : ${db.root.url}</echo>
-    <echo>- db.root.usr : ${db.root.usr}</echo>
-    <echo>- db.root.psw : ${db.root.psw}</echo>
     <sql driver="${driver.class}" 
          url="${db.root.url}" 
          userid="${db.root.usr}" 
          password="${db.root.psw}" 
          src="scripts/drop-all.sql" 
-         print="yes"
-         output="${archive.name}">
+         print="yes">
       <classpath>
         <pathelement location="${driver.location}"/>
       </classpath>

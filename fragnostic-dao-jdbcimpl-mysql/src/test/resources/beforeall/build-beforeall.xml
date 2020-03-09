@@ -37,8 +37,7 @@
          userid="${db.root.usr}" 
          password="${db.root.psw}" 
          src="scripts/create-db.sql" 
-         print="yes" 
-         output="${archive.name}">
+         print="yes">
       <classpath>
         <pathelement location="${driver.location}"/>
       </classpath>
@@ -58,8 +57,7 @@
          userid="${db.root.usr}" 
          password="${db.root.psw}" 
          src="scripts/create-db-user.sql" 
-         print="yes" 
-         output="${archive.name}">
+         print="yes">
       <classpath>
         <pathelement location="${driver.location}"/>
       </classpath>
@@ -79,8 +77,7 @@
          userid="${db.frg.usr}" 
          password="${db.frg.psw}" 
          src="scripts/create-table.sql" 
-         print="yes" 
-         output="${archive.name}">
+         print="yes">
       <classpath>
         <pathelement location="${driver.location}"/>
       </classpath>
@@ -100,8 +97,7 @@
          userid="${db.frg.usr}" 
          password="${db.frg.psw}" 
          src="scripts/populate-table.sql" 
-         print="yes" 
-         output="${archive.name}">
+         print="yes">
       <classpath>
         <pathelement location="${driver.location}"/>
       </classpath>
