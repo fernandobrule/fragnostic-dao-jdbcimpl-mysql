@@ -6,7 +6,7 @@ import com.fragnostic.dao.crud.FindByIdAgnostic
 import com.fragnostic.dao.glue.CodeName
 import com.fragnostic.dao.support.DaoLifeCycleSupport
 
-class FindByIdAgnosticTest extends DaoLifeCycleSupport with FindByIdAgnostic {
+class FindByIdTest extends DaoLifeCycleSupport with FindByIdAgnostic {
 
   val sqlFindById: String =
     """
