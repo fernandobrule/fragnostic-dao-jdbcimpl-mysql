@@ -6,7 +6,7 @@ import com.fragnostic.dao.crud.FindPageAgnostic
 import com.fragnostic.dao.glue.CodeName
 import com.fragnostic.dao.support.{ DaoLifeCycleSupport, SqlOrderBySupport }
 
-class FindPageAgnosticTest extends DaoLifeCycleSupport with FindPageAgnostic with SqlOrderBySupport {
+class FindPageTest extends DaoLifeCycleSupport with FindPageAgnostic with SqlOrderBySupport {
 
   describe("Find Page Agnostic Test") {
 
