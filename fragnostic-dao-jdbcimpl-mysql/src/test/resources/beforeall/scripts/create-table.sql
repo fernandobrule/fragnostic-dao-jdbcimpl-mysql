@@ -2,8 +2,9 @@
 -- ##############################################################
 -- Tabla: TEST_TABLE
 -- ##############################################################
-create table if not exists dbmysqlimpltest.testable(
-   testable_id              smallint unsigned not null auto_increment,
-   testable_field           varchar(32) not null,
-   constraint testable_pk   primary key(testable_id)
+create table if not exists dbmysqlimpltest.test_table(
+   test_id                   bigint unsigned not null auto_increment,
+   test_code                 varchar(32) not null,
+   test_name                 varchar(32) not null,
+   constraint tes_table_pk   primary key(test_code)
 ) engine = innodb default charset=latin1;

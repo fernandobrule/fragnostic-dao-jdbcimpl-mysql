@@ -13,7 +13,7 @@ class FindByIdAgnosticTest extends DaoLifeCycleSupport with FindByIdAgnostic {
       |
       | select test_code,
       |        test_name
-      | from db_admp.test_table
+      | from dbmysqlimpltest.test_table
       | where test_id = ?
       |
         """.stripMargin
@@ -76,7 +76,7 @@ class FindByIdAgnosticTest extends DaoLifeCycleSupport with FindByIdAgnostic {
 
     }
 
-    it("Cannot Find By Id") {
+    ignore("Cannot Find By Id") {
 
       val id: Long = 2000
 
@@ -87,7 +87,7 @@ class FindByIdAgnosticTest extends DaoLifeCycleSupport with FindByIdAgnostic {
       opt should be(None)
     }
 
-    it("Can Handle Error On Query") {
+    ignore("Can Handle Error On Query") {
 
       val id: Long = 2
 
@@ -100,7 +100,7 @@ class FindByIdAgnosticTest extends DaoLifeCycleSupport with FindByIdAgnostic {
 
     }
 
-    it("Can Handle Error On PS Fill Out") {
+    ignore("Can Handle Error On PS Fill Out") {
 
       val id: Long = 2
 
@@ -113,7 +113,7 @@ class FindByIdAgnosticTest extends DaoLifeCycleSupport with FindByIdAgnostic {
 
     }
 
-    it("Can Handle Error On Empty PS Fill Out") {
+    ignore("Can Handle Error On Empty PS Fill Out") {
 
       val id: Long = 2
 

@@ -1,7 +1,7 @@
 
 
-drop user 'mysqltestusr'@'%';
-flush privileges;
+--drop user 'mysqltestusr'@'%';
+--flush privileges;
 
 create user 'mysqltestusr'@'%' identified by 'mysqltestpsw';
 

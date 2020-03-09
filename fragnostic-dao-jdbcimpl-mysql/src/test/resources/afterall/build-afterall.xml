@@ -10,13 +10,7 @@
     <echo>===============================</echo>
     <echo>   Availables targets are:</echo>
     <echo>-------------------------------</echo>
-    <echo>$ cdb --> create database '${db.name}'</echo>
-    <echo>$ cusr --> create user</echo>
-    <echo>$ cct --> cat create table</echo>
-    <echo>$ cpt --> cat populate table</echo>
-    <echo>$ ct ---> create table</echo>
-    <echo>$ pt ---> populate table</echo>
-    <echo>$ all ----> all targets</echo>
+    <echo>$ drop-all --> drop db:'${db.name}' and user:${db.frg.usr}</echo>
     <echo>===============================</echo>
   </target>
 
@@ -28,26 +22,28 @@
     <tstamp>
       <format property="archive.name" pattern="'${lod.dir}/frg-drop-all.log'" />
     </tstamp>
+    <echo>- db.root.url : ${db.root.url}</echo>
+    <echo>- db.root.usr : ${db.root.usr}</echo>
+    <echo>- db.root.psw : ${db.root.psw}</echo>
     <sql driver="${driver.class}" 
          url="${db.root.url}" 
          userid="${db.root.usr}" 
          password="${db.root.psw}" 
          src="scripts/drop-all.sql" 
-         print="yes" 
+         print="yes"
          output="${archive.name}">
       <classpath>
         <pathelement location="${driver.location}"/>
       </classpath>
     </sql>
     <echo>-------------------------------------</echo>
-    <echo>SUCCESS: create usr done</echo>
+    <echo>SUCCESS: drop db and user done</echo>
     <echo>-------------------------------------</echo>
   </target>
 
 
    <!-- 
    - DO ALL
-   - , cdb, cct, ct, cpt, pt
    -->
   <target name="afterall" depends="drop-all">
     <echo>After All Done</echo>

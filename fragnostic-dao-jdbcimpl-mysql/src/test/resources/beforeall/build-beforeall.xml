@@ -28,9 +28,9 @@
     <tstamp>
       <format property="archive.name" pattern="'${lod.dir}/frg-create-db.log'" />
     </tstamp>
-    <echo>- db.frg.url : ${db.frg.url}</echo>
-    <echo>- db.frg.usr : ${db.frg.usr}</echo>
-    <echo>- db.frg.psw : ${db.frg.psw}</echo>
+    <echo>- db.root.url : ${db.root.url}</echo>
+    <echo>- db.root.usr : ${db.root.usr}</echo>
+    <echo>- db.root.psw : ${db.root.psw}</echo>
     <sql driver="${driver.class}" 
          url="${db.root.url}" 
          userid="${db.root.usr}" 
