@@ -13,7 +13,7 @@ class FindByIdAgnosticTest extends DaoLifeCycleSupport with FindByIdAgnostic {
       |
       | select test_code,
       |        test_name
-      | from db_admp.test_table
+      | from dbmysqlimpltest.test_table
       | where test_id = ?
       |
         """.stripMargin
@@ -52,7 +52,7 @@ class FindByIdAgnosticTest extends DaoLifeCycleSupport with FindByIdAgnostic {
         Left("fragnostic.dao.test.error.ps.fillout.throwable")
     }
 
-  def newCodeName = (rs: ResultSet) => try {
+  def newCodeName = (rs: ResultSet, args: Seq[String]) => try {
     Right(CodeName(
       rs.getString("test_code"),
       rs.getString("test_name")))
