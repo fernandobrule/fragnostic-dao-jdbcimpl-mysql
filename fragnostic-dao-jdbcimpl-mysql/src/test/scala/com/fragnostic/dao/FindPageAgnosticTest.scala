@@ -25,7 +25,7 @@ class FindPageAgnosticTest extends DaoLifeCycleSupport with FindPageAgnostic wit
       val sqlCountTotalRows: String =
         s"""
            | select count(*) as total_rows
-           | from db_admp.test_table
+           | from dbmysqlimpltest.test_table
            |
      """.stripMargin
 
@@ -34,7 +34,7 @@ class FindPageAgnosticTest extends DaoLifeCycleSupport with FindPageAgnostic wit
            | select test_id,
            |        test_code,
            |        test_name
-           | from db_admp.test_table
+           | from dbmysqlimpltest.test_table
            | {{orderBy}}
            | limit ?, ?
            |
