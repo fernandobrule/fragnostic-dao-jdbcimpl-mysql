@@ -2,7 +2,6 @@ package com.fragnostic.dao.impl
 
 import java.util.Properties
 
-import com.fragnostic.conf.service.CakeServiceConf
 import com.fragnostic.dao.api.DataSourceApi
 import com.fragnostic.support.FilesSupport
 import com.mysql.cj.jdbc.MysqlDataSource
@@ -43,30 +42,38 @@ trait MySql8DataSource extends DataSourceApi {
           Left("mysql8.data.source.get.values.error")
       }
 
+    private def getEnvProp(name: String): Option[String] =
+      Option(System.getenv(name))
+
+    private def getConf(key: String): Either[String, String] =
+      getEnvProp(key) map (value => Right(value)) getOrElse {
+        logger.error(s"getConf() - value na for key:$key")
+        Left("get.conf.error")
+      }
+
     override def getDataSource: Either[String, MysqlDataSource] =
-      CakeServiceConf.confService.getConf(MYSQL8_DATASOURCE_PROPERTY_FILE_NAME).fold(
+      getConf(MYSQL8_DATASOURCE_PROPERTY_FILE_NAME).fold(
         error => {
           logger.error(s"getDataSource() - ERROR al cargar propertyFileName, $error")
           Left("mysql8.datasource.impl.get.datasource.on.get.conf")
         },
         propertyFileName =>
-          loadProperties(propertyFileName) fold (
-            error => {
-              logger.error(s"getDataSource() - ERROR al leer archivo de propiedades, $error")
-              Left("mysql8.datasource.impl.get.datasource.on.load.properties")
-            },
-            props => getValues(props) fold (
-              error => Left(error),
-              tuple => {
-                if (logger.isInfoEnabled()) logger.info(s"getDataSource() - $tuple")
-                val mysqlDataSource: MysqlDataSource = new MysqlDataSource()
-                mysqlDataSource.setServerName(tuple._1)
-                mysqlDataSource.setPort(tuple._2)
-                mysqlDataSource.setDatabaseName(tuple._3)
-                mysqlDataSource.setUser(tuple._4)
-                mysqlDataSource.setPassword(tuple._5)
-                Right(mysqlDataSource)
-              })))
+          loadProperties(propertyFileName) fold (error => {
+            logger.error(s"getDataSource() - ERROR al leer archivo de propiedades, $error")
+            Left("mysql8.datasource.impl.get.datasource.on.load.properties")
+          },
+            props =>
+              getValues(props) fold (error => Left(error),
+                tuple => {
+                  if (logger.isInfoEnabled()) logger.info(s"getDataSource() - $tuple")
+                  val mysqlDataSource: MysqlDataSource = new MysqlDataSource()
+                  mysqlDataSource.setServerName(tuple._1)
+                  mysqlDataSource.setPort(tuple._2)
+                  mysqlDataSource.setDatabaseName(tuple._3)
+                  mysqlDataSource.setUser(tuple._4)
+                  mysqlDataSource.setPassword(tuple._5)
+                  Right(mysqlDataSource)
+                })))
 
   }
 

@@ -12,7 +12,6 @@ object Dependencies {
   // fragnostic
   //
   lazy val fragnosticDaoApi = "com.fragnostic" % "fragnostic-dao-api_2.13" % "0.1.22-SNAPSHOT"
-  lazy val fragnosticConf = "com.fragnostic" % "fragnostic-conf_2.13" % "0.1.11"
   lazy val fragnosticSupport = "com.fragnostic" % "fragnostic-support_2.13" % "0.1.14-SNAPSHOT"
 
 }

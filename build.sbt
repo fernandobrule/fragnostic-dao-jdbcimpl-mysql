@@ -81,7 +81,6 @@ lazy val fragnosticDao = Project(
       scalatest,
       fragnosticDaoApi,
       mysql8JavaClient,
-      fragnosticConf,
       fragnosticSupport
     ),
     description := "fragnostic-dao-jdbcimpl-mysql"
