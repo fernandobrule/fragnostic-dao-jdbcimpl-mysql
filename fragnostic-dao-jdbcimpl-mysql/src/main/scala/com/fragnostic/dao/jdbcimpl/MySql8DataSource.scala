@@ -1,4 +1,4 @@
-package com.fragnostic.dao.impl
+package com.fragnostic.dao.jdbcimpl
 
 import java.util.Properties
 
