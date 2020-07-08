@@ -1,6 +1,6 @@
 package com.fragnostic.dao
 
-import com.fragnostic.dao.impl.MySql8DataSource
+import com.fragnostic.dao.jdbcimpl.MySql8DataSource
 
 object CakeDaoMySql {
 
