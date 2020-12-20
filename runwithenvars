@@ -2,7 +2,7 @@
 
 
 export IP_DB=localhost
-export MYSQL8_DATASOURCE_PROPERTY_FILE_NAME=fragnostic-dao-jdbcimpl-mysql/src/test/resources/fragnostic-dao-mysql8-datasource-test.properties
+export MYSQL8_DATASOURCE_PROPERTY_FILE_NAME=fragnostic-dao-jdbc-mysql-impl/src/test/resources/fragnostic-dao-mysql8-datasource-test.properties
 
 
 ./sbt -v -213
