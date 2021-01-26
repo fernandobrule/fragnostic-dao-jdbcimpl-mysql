@@ -7,4 +7,4 @@ export IP_HOST=localhost
 echo "    IP_HOST : $IP_HOST"
 echo ""
 
-ant -f ./fragnostic-dao-jdbcimpl-mysql/src/test/resources/beforeall/build-beforeall.xml beforeall
+ant -f ./fragnostic-dao-jdbc-mysql-impl/src/test/resources/beforeall/build-beforeall.xml beforeall
