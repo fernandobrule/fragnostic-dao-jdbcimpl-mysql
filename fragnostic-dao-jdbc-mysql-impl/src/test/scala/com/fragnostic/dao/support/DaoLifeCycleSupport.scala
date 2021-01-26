@@ -14,7 +14,7 @@ trait DaoLifeCycleSupport extends FunSpec with Matchers with BeforeAndAfterAll {
     dataSource => dataSource)
 
   override def beforeAll(): Unit = {
-    val ans = "./fragnostic-dao-jdbcimpl-mysql/src/test/resources/beforeall/antbeforeall" !
+    val ans = "./fragnostic-dao-jdbc-mysql-impl/src/test/resources/beforeall/antbeforeall" !
 
     //
     println(s"ans:\n$ans\n")
@@ -23,7 +23,7 @@ trait DaoLifeCycleSupport extends FunSpec with Matchers with BeforeAndAfterAll {
 
   override def afterAll(): Unit = {
     //dataSource.close()
-    val ans = "./fragnostic-dao-jdbcimpl-mysql/src/test/resources/afterall/antafterall" !
+    val ans = "./fragnostic-dao-jdbc-mysql-impl/src/test/resources/afterall/antafterall" !
 
     //
     println(s"ans:\n$ans\n")
