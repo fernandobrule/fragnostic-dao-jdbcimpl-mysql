@@ -17,7 +17,7 @@ trait MySql8DataSource extends DataSourceApi {
 
     private[this] val logger: Logger = LoggerFactory.getLogger(getClass.getName)
 
-    private val MYSQL8_DATASOURCE_PROPERTY_FILE_NAME = "MYSQL8_DATASOURCE_PROPERTY_FILE_NAME"
+    private val FRAGNOSTIC_DAO_JDBCIMPL_MYSQL_CONF_FILE = "FRAGNOSTIC_DAO_JDBCIMPL_MYSQL_CONF_FILE"
 
     //
     // https://www.programcreek.com/java-api-examples/index.php?api=com.mysql.cj.jdbc.MysqlDataSource
@@ -52,7 +52,7 @@ trait MySql8DataSource extends DataSourceApi {
       }
 
     override def getDataSource: Either[String, MysqlDataSource] =
-      getConf(MYSQL8_DATASOURCE_PROPERTY_FILE_NAME).fold(
+      getConf(FRAGNOSTIC_DAO_JDBCIMPL_MYSQL_CONF_FILE).fold(
         error => {
           logger.error(s"getDataSource() - ERROR al cargar propertyFileName, $error")
           Left("mysql8.datasource.impl.get.datasource.on.get.conf")
@@ -65,7 +65,6 @@ trait MySql8DataSource extends DataSourceApi {
             props =>
               getValues(props) fold (error => Left(error),
                 tuple => {
-                  if (logger.isInfoEnabled()) logger.info(s"getDataSource() - $tuple")
                   val mysqlDataSource: MysqlDataSource = new MysqlDataSource()
                   mysqlDataSource.setServerName(tuple._1)
                   mysqlDataSource.setPort(tuple._2)
