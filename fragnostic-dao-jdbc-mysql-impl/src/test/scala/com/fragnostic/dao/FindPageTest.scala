@@ -1,9 +1,8 @@
 package com.fragnostic.dao
 
 import java.sql.ResultSet
-
 import com.fragnostic.dao.crud.FindPageAgnostic
-import com.fragnostic.dao.glue.CodeName
+import com.fragnostic.dao.glue.{ CodeName, Page }
 import com.fragnostic.dao.support.{ DaoLifeCycleSupport, SqlOrderBySupport }
 
 class FindPageTest extends DaoLifeCycleSupport with FindPageAgnostic with SqlOrderBySupport {
@@ -57,20 +56,20 @@ class FindPageTest extends DaoLifeCycleSupport with FindPageAgnostic with SqlOrd
         case e: Exception => Left(e.getMessage)
       }
 
-      val tuple = findPage(numPage, nummaxBadgets, orderBy, rowsPerPg, optPrmsCount, optPrmsPage, sqlCountTotalRows, sqlFindPage, newCodeName) fold (
+      val page: Page[CodeName] = findPage(numPage, nummaxBadgets, orderBy, rowsPerPg, optPrmsCount, optPrmsPage, sqlCountTotalRows, sqlFindPage, newCodeName) fold (
         error => throw new IllegalStateException(error),
-        tuple => tuple)
+        page => page)
 
-      println(s"numPage: Long = ${tuple._1}")
-      println(s"orderBy: String = ${tuple._2}")
-      println(s"linksLimitLeft: Long = ${tuple._3}")
-      println(s"linksLimitRight: Long = ${tuple._4}")
-      println(s"linksAsList: List[Int] = ${tuple._5}")
-      println(s"rowsPerPage: Long = ${tuple._6}")
-      println(s"numRows: Long = ${tuple._7}")
-      println(s"numPages: Long = ${tuple._8}")
-      tuple._9 foreach (cn => println(cn))
-      println(s"isEmpty: Boolean = ${tuple._10}")
+      println(s"numPage: Long = ${page.numPage}")
+      println(s"orderBy: String = ${page.orderBy}")
+      println(s"linksLimitLeft: Long = ${page.linksLimitLeft}")
+      println(s"linksLimitRight: Long = ${page.linksLimitRight}")
+      println(s"linksAsList: List[Int] = ${page.links}")
+      println(s"rowsPerPage: Long = ${page.rowsPerPage}")
+      println(s"numRows: Long = ${page.numRows}")
+      println(s"numPages: Long = ${page.numPages}")
+      page.list foreach (cn => println(cn))
+      println(s"isEmpty: Boolean = ${page.listIsEmpty}")
 
     }
 
