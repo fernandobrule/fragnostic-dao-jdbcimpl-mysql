@@ -1,10 +1,31 @@
 #!/bin/bash
 
 export IP_DB=localhost
-echo "      IP_DB : $IP_DB"
+echo "- IP_DB : $IP_DB"
 
 export IP_HOST=localhost
-echo "    IP_HOST : $IP_HOST"
+echo "- IP_HOST : $IP_HOST"
 echo ""
 
-ant -f ./fragnostic-dao-jdbc-mysql-impl/src/test/resources/beforeall/build-beforeall.xml beforeall
+BASE_DIR=./fragnostic-dao-jdbc-mysql-impl/src/test/resources
+BEFOREALL_DIR=$BASE_DIR/beforeall
+JAR_NAME=$(grep -E "^jar.name=" $BEFOREALL_DIR/build-beforeall.properties | awk -F "=" '{print($2)}')
+echo "- JAR_NAME : $JAR_NAME"
+JAR_FULL_PATH=$BASE_DIR/lib/$JAR_NAME
+echo "- JAR_FULL_PATH : $JAR_FULL_PATH"
+
+downloadJdbcDriver() {
+  echo "downloadJdbcDriver() - enter, looking for: $1"
+  if test -f "$1"
+  then
+    echo "downloadJdbcDriver() - [$1] exists."
+  else
+    echo "downloadJdbcDriver() - [$1] does not exists."
+    curl -O https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.18/mysql-connector-java-8.0.18.jar > $JAR_NAME
+    mv $JAR_NAME $BASE_DIR/lib/
+  fi
+}
+
+downloadJdbcDriver $JAR_FULL_PATH
+
+ant -f $BEFOREALL_DIR/build-beforeall.xml beforeall
