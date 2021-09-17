@@ -2,12 +2,14 @@ package com.fragnostic.dao.support
 
 import com.fragnostic.dao.CakeDaoMySql
 import com.mysql.cj.jdbc.MysqlDataSource
-import org.scalatest.{ BeforeAndAfterAll, FunSpec, Matchers }
+import org.scalatest.BeforeAndAfterAll
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.should.Matchers
 
 import scala.language.postfixOps
 import scala.sys.process._
 
-trait DaoLifeCycleSupport extends FunSpec with Matchers with BeforeAndAfterAll {
+trait DaoLifeCycleSupport extends AnyFunSpec with Matchers with BeforeAndAfterAll {
 
   val dataSource: MysqlDataSource = CakeDaoMySql.mysql8DataSource.getDataSource fold (
     error => throw new IllegalStateException(error),
