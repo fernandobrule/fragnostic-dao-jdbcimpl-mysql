@@ -1,8 +1,8 @@
 package com.fragnostic.dao
 
 import com.fragnostic.dao.crud.FindPageAgnostic
-import com.fragnostic.dao.glue.{CodeName, Page}
-import com.fragnostic.dao.support.{DaoLifeCycleSupport, SqlOrderBySupport}
+import com.fragnostic.dao.glue.{ CodeName, Page }
+import com.fragnostic.dao.support.{ DaoLifeCycleSupport, SqlOrderBySupport }
 
 import java.sql.ResultSet
 

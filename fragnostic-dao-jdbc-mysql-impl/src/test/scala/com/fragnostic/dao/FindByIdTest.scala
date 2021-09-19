@@ -4,7 +4,7 @@ import com.fragnostic.dao.crud.FindByIdAgnostic
 import com.fragnostic.dao.glue.CodeName
 import com.fragnostic.dao.support.DaoLifeCycleSupport
 
-import java.sql.{PreparedStatement, ResultSet}
+import java.sql.{ PreparedStatement, ResultSet }
 
 class FindByIdTest extends DaoLifeCycleSupport with FindByIdAgnostic {
 
