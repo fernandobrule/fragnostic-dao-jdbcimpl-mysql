@@ -72,24 +72,24 @@ lazy val manifestSetting = packageOptions += {
 
 lazy val doNotPublish = Seq(publish := {}, publishLocal := {}, PgpKeys.publishSigned := {}, PgpKeys.publishLocalSigned := {})
 
-lazy val fragnosticDaoImplProject = Project(
-  id = "fragnostic-dao-impl-project",
+lazy val fragnosticDaoJdbcMysqlImplProject = Project(
+  id = "fragnostic-dao-jdbc-mysql-impl-project",
   base = file(".")).settings(
   fragnosticSettings ++ Seq(
-    name := "fragnostic dao impl project",
+    name := "fragnostic dao jdbc mysql impl project",
     artifacts := Classpaths.artifactDefs(Seq(Compile / packageDoc, Compile / makePom)).value,
     packagedArtifacts := Classpaths.packaged(Seq(Compile / packageDoc, Compile / makePom)).value,
-    description := "A Fragnostic Dao Impl",
+    description := "A Fragnostic Dao Jdbc Mysql Impl",
     shellPrompt := { state =>
       s"sbt:${Project.extract(state).currentProject.id}" + Def.withColor("> ", Option(scala.Console.CYAN))
     }
   )).aggregate(
-  fragnosticDaoImpl,
+  fragnosticDaoJdbcMysqlImpl,
 ).enablePlugins()
 
-lazy val fragnosticDaoImpl = Project(
-  id = "fragnostic-dao-impl",
-  base = file("fragnostic-dao-impl")).settings(fragnosticSettings ++ Seq(
+lazy val fragnosticDaoJdbcMysqlImpl = Project(
+  id = "fragnostic-dao-jdbc-mysql-impl",
+  base = file("fragnostic-dao-jdbc-mysql-impl")).settings(fragnosticSettings ++ Seq(
   libraryDependencies ++= Seq(
     logbackClassic,
     slf4jApi,
@@ -99,7 +99,7 @@ lazy val fragnosticDaoImpl = Project(
     fragnosticSupport,
     fragnosticConfEnv
   ),
-  description := "fragnostic dao impl"
+  description := "fragnostic dao jdbc mysql impl"
 )
 ) dependsOn(
   // maybe

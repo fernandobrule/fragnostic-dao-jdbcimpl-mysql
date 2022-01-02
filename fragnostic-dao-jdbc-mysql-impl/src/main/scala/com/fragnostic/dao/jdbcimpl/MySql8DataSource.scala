@@ -1,6 +1,5 @@
 package com.fragnostic.dao.jdbcimpl
 
-import com.fragnostic.conf.env.service.CakeConfEnvService
 import com.fragnostic.conf.env.service.CakeConfEnvService.confEnvService.{ getInt, getString }
 import com.fragnostic.dao.api.DataSourceApi
 import com.mysql.cj.jdbc.MysqlDataSource

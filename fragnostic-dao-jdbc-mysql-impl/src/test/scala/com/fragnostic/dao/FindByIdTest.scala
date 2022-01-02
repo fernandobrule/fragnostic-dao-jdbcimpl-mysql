@@ -70,9 +70,8 @@ class FindByIdTest extends DaoLifeCycleSupport with FindByIdAgnostic {
         error => throw new IllegalStateException(error),
         opt => opt)
 
-      opt should not be None
-      opt.get.code should be("beta")
-      opt.get.name should be("BETA")
+      assertResult(opt.get.code)("beta")
+      assertResult(opt.get.name)("BETA")
 
     }
 
@@ -84,7 +83,7 @@ class FindByIdTest extends DaoLifeCycleSupport with FindByIdAgnostic {
         error => throw new IllegalStateException(error),
         opt => opt)
 
-      opt should be(None)
+      assertResult(opt)(None)
     }
 
     it("Can Handle Error On Query") {
@@ -95,8 +94,7 @@ class FindByIdTest extends DaoLifeCycleSupport with FindByIdAgnostic {
         error => error,
         opt => opt)
 
-      opt should not be None
-      opt should be(fragnostic_dao_test_error_ps_fillout_exception)
+      assertResult(opt)(fragnostic_dao_test_error_ps_fillout_exception)
 
     }
 
@@ -108,8 +106,7 @@ class FindByIdTest extends DaoLifeCycleSupport with FindByIdAgnostic {
         error => error,
         opt => opt)
 
-      opt should not be None
-      opt should be(fragnostic_dao_test_error_ps_fillout_exception)
+      assertResult(opt)(fragnostic_dao_test_error_ps_fillout_exception)
 
     }
 
@@ -121,8 +118,7 @@ class FindByIdTest extends DaoLifeCycleSupport with FindByIdAgnostic {
         error => error,
         opt => opt)
 
-      opt should not be None
-      opt should be("prepared.statement.support.error.on.execute.query.1")
+      assertResult(opt)("prepared.statement.support.error.on.execute.query.1")
 
     }
 
