@@ -18,42 +18,15 @@ trait MySql8DataSource extends DataSourceApi {
     // https://tersesystems.com/blog/2012/12/27/error-handling-in-scala/
     //
     private val getConfig: Either[String, (String, Int, String, String, String)] =
-      getString("DATASOURCE_HOST") fold (
-        error => Left(error),
-        opt => opt map (
-          host => {
-            getInt("DATASOURCE_PORT") fold (
-              error => Left(error),
-              opt => opt map (
-                port => {
-                  getString("DATASOURCE_DB") fold (
-                    error => Left(error),
-                    opt => opt map (
-                      db => {
-                        getString("DATASOURCE_USR") fold (
-                          error => Left(error),
-                          opt => opt map (
-                            usr => {
-                              getString("DATASOURCE_PSW") fold (
-                                error => Left(error),
-                                opt => opt map (
-                                  psw => {
-                                    Right(host, port, db, usr, psw)
-                                  } //
-                                ) getOrElse Left("mysql.8.ds.get.config.error.DATASOURCE_PSW.env.var.no.exists") //
-                              )
-                            } //
-                          ) getOrElse Left("mysql.8.ds.get.config.error.DATASOURCE_USR.env.var.no.exists") //
-                        )
-                      } //
-                    ) getOrElse Left("mysql.8.ds.get.config.error.DATASOURCE_DB.env.var.no.exists") //
-                  )
-                } //
-              ) getOrElse Left("mysql.8.ds.get.config.error.DATASOURCE_PORT.env.var.no.exists") //
-            )
-          } //
-        ) getOrElse Left("mysql.8.ds.get.config.error.DATASOURCE_HOST.env.var.no.exists") //
-      )
+      for {
+        host <- getString("DATASOURCE_HOST")
+        port <- getInt("DATASOURCE_PORT")
+        db <- getString("DATASOURCE_DB")
+        usr <- getString("DATASOURCE_USR")
+        psw <- getString("DATASOURCE_PSW")
+      } yield {
+        (host, port, db, usr, psw)
+      }
 
     override def getDataSource: Either[String, MysqlDataSource] =
       getConfig fold (
@@ -66,7 +39,8 @@ trait MySql8DataSource extends DataSourceApi {
           mysqlDataSource.setUser(config._4)
           mysqlDataSource.setPassword(config._5)
           Right(mysqlDataSource)
-        })
+        } //
+      )
 
   }
 
