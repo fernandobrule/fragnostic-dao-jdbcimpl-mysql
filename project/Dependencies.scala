@@ -2,7 +2,7 @@ import sbt._
 
 object Dependencies {
 
-  lazy val fragnosticDaoApi           = "com.fragnostic"        % "fragnostic-dao-api_2.13"        % "0.1.4"
+  lazy val fragnosticDaoApi           = "com.fragnostic"        % "fragnostic-dao-api_2.13"        % "0.2.0-SNAPSHOT"
   lazy val fragnosticSupport          = "com.fragnostic"        % "fragnostic-support_2.13"        % "0.1.18"
   lazy val fragnosticConfEnv          = "com.fragnostic"        %  "fragnostic-conf-env_2.13"      % "0.1.9"
 

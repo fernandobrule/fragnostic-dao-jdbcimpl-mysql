@@ -12,7 +12,8 @@ trait DaoLifeCycleSupport extends AnyFunSpec with BeforeAndAfterAll {
 
   val dataSource: MysqlDataSource = CakeDaoMySql.mysql8DataSource.getDataSource fold (
     error => throw new IllegalStateException(error),
-    dataSource => dataSource)
+    dataSource => dataSource //
+  )
 
   override def beforeAll(): Unit = {
     val ans = "./fragnostic-dao-jdbc-mysql-impl/src/test/resources/beforeall/antbeforeall" !
