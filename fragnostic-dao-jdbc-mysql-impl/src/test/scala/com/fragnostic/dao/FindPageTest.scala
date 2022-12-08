@@ -42,15 +42,15 @@ class FindPageTest extends DaoLifeCycleSupport with FindPageAgnostic with SqlOrd
   )
 
   val whereReqEmpty: List[(String, String, String)] = List.empty
-  val whereReq: List[(String, String, String)] = List(
-    ("test_code", "=", "uno") //
+  val mapNickToArgs: List[(String, String, String, String)] = List(
+    ("test_code", "=", "uno", "") //
   )
-  val whereAvailable: List[(String, String, String)] = List(
-    ("test_code", "=", "varchar"),
-    ("test_code", "=", "varchar") //
+  val mapNickToRealColumns: List[(String, String, String, String)] = List(
+    ("test_code", "=", "varchar", ""),
+    ("test_code", "=", "varchar", "") //
   )
 
-  def newCodeName(rs: ResultSet, args: Seq[String]): Either[String, CodeName] =
+  def newCodeName(rs: ResultSet, args: Map[String, String]): Either[String, CodeName] =
     try {
       Right(CodeName(
         rs.getString("test_code"),
@@ -72,8 +72,8 @@ class FindPageTest extends DaoLifeCycleSupport with FindPageAgnostic with SqlOrd
         orderDesc,
         orderReq,
         orderAvailable,
-        whereReq,
-        whereAvailable,
+        mapNickToArgs,
+        mapNickToRealColumns,
         prmsCount,
         prmsPage,
         sqlCountTotalRows,
@@ -82,7 +82,26 @@ class FindPageTest extends DaoLifeCycleSupport with FindPageAgnostic with SqlOrd
         error => throw new IllegalStateException(error),
         page => page //
       )
+      /*
 
+def findPage[P](
+  numPage: Int,
+  numMaxBadgets: Short,
+  rowsPerPg: Int,
+  orderDesc: Boolean,
+  orderReq: String,
+  orderAvailable: Map[String, String],
+  mapNickToArgs: List[(String, String, String, String)],
+  mapNickToRealColumns: List[(String, String, String, String)],
+  prmsCount: Map[Int, (String, String)],
+  prmsPage: Map[Int, (String, String)],
+  sqlCountTotalRows: String,
+  sqlFindPage: String,
+  newRow: (ResultSet, Map[String, String]) => Either[String, P],
+  args: Map[String, String]): Either[String, Page[P]] = {
+
+
+ */
       println(s"numPage: Long = ${page.numPage}")
       println(s"orderBy: String = ${page.orderBy}")
       println(s"linksLimitLeft: Long = ${page.linksLimitLeft}")
