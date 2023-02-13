@@ -62,17 +62,7 @@ trait MySql8DataSource extends DataSourceApi {
             mysqlDataSource.setPassword(config._5)
             mysqlDataSource
           }) match {
-            case Success(mysqlDataSource) => {
-              logger.info(
-                s"""getDataSource() - config:
-                   | DATASOURCE_HOST[${getEnv(DATASOURCE_HOST)}],
-                   | DATASOURCE_PORT[${getEnv(DATASOURCE_PORT)}],
-                   | DATASOURCE_DB[${getEnv(DATASOURCE_DB)}],
-                   | DATASOURCE_USR[${getEnv(DATASOURCE_USR)}],
-                   | DATASOURCE_PSW[******]""".stripMargin //
-              )
-              Right(mysqlDataSource)
-            }
+            case Success(mysqlDataSource) => Right(mysqlDataSource)
             case Failure(throwable) => {
               logger.error(s"getDataSource() - 2 - ${throwable.getMessage}")
               logger.error(s"getDataSource() - 2 - DATASOURCE_HOST[${getEnv(DATASOURCE_HOST)}], DATASOURCE_PORT[${getEnv(DATASOURCE_PORT)}], DATASOURCE_DB[${getEnv(DATASOURCE_DB)}], DATASOURCE_USR[${getEnv(DATASOURCE_USR)}], DATASOURCE_PSW[******]")
