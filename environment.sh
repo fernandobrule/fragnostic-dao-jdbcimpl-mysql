@@ -1,0 +1,11 @@
+
+export IP_DB=localhost
+
+export REDIS_HOST=localhost
+export REDIS_PORT=6379
+
+export FRG_DAO_JDBC_IMPL_DATASOURCE_HOST=localhost
+export FRG_DAO_JDBC_IMPL_DATASOURCE_PORT=3306
+export FRG_DAO_JDBC_IMPL_DATASOURCE_DB=dbmysqlimpltest
+export FRG_DAO_JDBC_IMPL_DATASOURCE_USR=mysqltestusr
+export FRG_DAO_JDBC_IMPL_DATASOURCE_PSW=mysqltestpsw
