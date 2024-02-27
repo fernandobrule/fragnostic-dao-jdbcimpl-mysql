@@ -8,7 +8,7 @@ import org.scalatest.funspec.AnyFunSpec
 import scala.language.postfixOps
 import scala.sys.process._
 
-trait DaoLifeCycleSupport extends AnyFunSpec with BeforeAndAfterAll {
+ trait DaoLifeCycleSupport extends AnyFunSpec with BeforeAndAfterAll {
 
   val FRG_DAO_JDBC_IMPL_DATASOURCE_HOST: String = "FRG_DAO_JDBC_IMPL_DATASOURCE_HOST"
   val FRG_DAO_JDBC_IMPL_DATASOURCE_PORT: String = "FRG_DAO_JDBC_IMPL_DATASOURCE_PORT"
