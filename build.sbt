@@ -17,12 +17,12 @@ val scala3migaration = Def.settings(
   }
 )
 
-lazy val fragnosticDaoJdbcImplSettings = Seq(
+lazy val fragnosticDaoJdbcMysqlImplSettings = Seq(
   organization := "com.fragnostic",
   //logLevel := Level.Error,
   Test / fork := true,
   Test / baseDirectory := (ThisBuild / baseDirectory).value,
-  crossScalaVersions := Seq("2.12.18", "2.13.10", "2.13.11", "2.13.12", "3.3.0"),
+  crossScalaVersions := Seq("2.12.18", "2.13.10", "2.13.11", "2.13.12", "2.13.13", "3.3.0"),
   scalaVersion := crossScalaVersions.value.head,
   Test / testOptions ++= {
     if (scalaBinaryVersion.value == "3") {
@@ -67,10 +67,10 @@ lazy val fragnosticDaoJdbcImplSettings = Seq(
   c / console / scalacOptions --= unusedOptions
 )
 
-lazy val fragnosticDaoJdbcImplProject = Project(
+lazy val fragnosticDaoJdbcMysqlImplProject = Project(
   id = "fragnostic-dao-jdbc-mysql-impl-project",
   base = file(".")).settings(
-    fragnosticDaoJdbcImplSettings ++ Seq(
+    fragnosticDaoJdbcMysqlImplSettings ++ Seq(
     name := "fragnostic-dao-jdbc-mysql-impl",
     artifacts := Classpaths.artifactDefs(Seq(Compile / packageDoc, Compile / makePom)).value,
     packagedArtifacts := Classpaths.packaged(Seq(Compile / packageDoc, Compile / makePom)).value,
@@ -81,20 +81,20 @@ lazy val fragnosticDaoJdbcImplProject = Project(
   ) ++ Defaults.packageTaskSettings(
     Compile / packageDoc, (Compile / unidoc).map(_.flatMap(Path.allSubpaths))
   )).aggregate(
-    fragnosticDaoJdbcImpl
+    fragnosticDaoJdbcMysqlImpl
   ).enablePlugins(ScalaUnidocPlugin)
 
-lazy val fragnosticDaoJdbcImpl = Project(
+lazy val fragnosticDaoJdbcMysqlImpl = Project(
   id = "fragnostic-dao-jdbc-mysql-impl",
-  base = file("fragnostic-dao-jdbc-mysql-impl")).settings(fragnosticDaoJdbcImplSettings ++ Seq(
+  base = file("fragnostic-dao-jdbc-mysql-impl")).settings(fragnosticDaoJdbcMysqlImplSettings ++ Seq(
     libraryDependencies ++= Seq(
-      logbackClassic,
-      //slf4jApi,
-      scalatestFunSpec,
-      mysql8JavaClient,
+      fragnosticConfEnv,
       fragnosticDaoApi,
       fragnosticSupport,
-      fragnosticConfEnv
+      logbackClassic,
+      mysql8JavaClient,
+      scalatestFunSpec,
+      slf4jApi//
     ),
     description := "fragnostic-dao-jdbc-mysql-impl"
   )
@@ -119,13 +119,13 @@ lazy val manifestSetting = packageOptions += {
 
 // Things we care about primarily because Maven Central demands them
 lazy val mavenCentralFrouFrou = Seq(
-  homepage := Some(url("http://www.okl.org/")),
+  homepage := Some(url("http://www.fragnostic-dao-jdbc-mysql-impl.org/")),
   startYear := Some(2022),
-  licenses := Seq(("BSD", url("http://github.com/okl/okl/raw/HEAD/LICENSE"))),
+  licenses := Seq(("BSD", url("http://github.com/fragnostic-dao-jdbc-mysql-impl/fragnostic-dao-jdbc-mysql-impl/raw/HEAD/LICENSE"))),
   pomExtra := pomExtra.value ++ Group(
     <scm>
-      <url>http://github.com/okl/okl</url>
-      <connection>scm:git:git://github.com/okl/okl.git</connection>
+      <url>http://github.com/fragnostic-dao-jdbc-mysql-impl/fragnostic-dao-jdbc-mysql-impl</url>
+      <connection>scm:git:git://github.com/fragnostic-dao-jdbc-mysql-impl/fragnostic-dao-jdbc-mysql-impl.git</connection>
     </scm>
     <developers>
       <developer>
